@@ -1,0 +1,65 @@
+<div class="container">
+  <mat-divider style="height: 20px; margin: 05px;" [inset]="true"></mat-divider>
+  <div class="divbar">
+    <form [formGroup]="form">
+      <mat-form-field>
+        <mat-select placeholder="Marca" formControlName="idmarca" (selectionChange)="MostrarPrendas()">
+          <mat-option *ngFor="let item of marcas" [value]="item.id"> {{item.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-divider style=" margin: 10px;" [vertical]="true"></mat-divider>
+      <mat-form-field>
+        <mat-select placeholder="Categoria" formControlName="idcategoria" (selectionChange)="MostrarPrendas()">
+          <mat-option *ngFor="let item of categorias" [value]="item.id"> {{item.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-divider style=" margin: 10px;" [vertical]="true"></mat-divider>
+      <mat-form-field>
+        <mat-select placeholder="Tallas" formControlName="idtalla" (selectionChange)="MostrarPrendas()">
+          <mat-option *ngFor="let item of tallas" [value]="item.id"> {{item.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <span fxFlex></span>
+      <button mat-button color="primary" [disabled]="!habilitaradd" (click)="openDialog()"><i
+        class="fa fa-plus-square"></i> Productos
+      </button>
+      <!-- <form >
+         <mat-form-field class="example-full-width">
+           <input matInput type="search" [formControl]="palabra" placeholder="Buscar" (change)="MostrarPrendas()">
+         </mat-form-field>
+       </form>-->
+    </form>
+  </div>
+  <mat-divider style="height: 20px; margin: 05px;" [inset]="true"></mat-divider>
+  <mat-grid-list cols="4" rowHeight="1:2">
+    <mat-grid-tile *ngFor="let item of prendas">
+      <mat-card class="example-card">
+        <img class="imag" mat-card-image src="{{item.imagen}}" alt="Photo of a Shiba Inu">
+        <mat-card-content>
+          <p required [(ngModel)]="marca" name="marca" ngDefaultControl>MARCA: {{item.marca}}</p>
+          <p required [(ngModel)]="color" name="color" ngDefaultControl>COLOR: {{item.color}}</p>
+          <p required [(ngModel)]="precio" name="precio" ngDefaultControl>PRECIO: {{item.precio}}</p>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Mas...
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p required [(ngModel)]="talla" name="talla" ngDefaultControl>TALLA: {{item.talla}}</p>
+            <p required [(ngModel)]="sexo" name="sexo" ngDefaultControl>GENERO: {{item.sexo}}</p>
+            <p required [(ngModel)]="cantidad" name="cantidad" ngDefaultControl>CANTIDAD: {{item.cantidad}}</p>
+            <p required [(ngModel)]="categoria" name="categoria" ngDefaultControl>CATEGORIA: {{item.categoria}}</p>
+          </mat-expansion-panel>
+        </mat-card-content>
+        <mat-card-actions>
+          <span fxFlex></span>
+          <button class="text-white" [disabled]="!habilitaredit" (click)="Editar(item)" mat-button>Editar</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

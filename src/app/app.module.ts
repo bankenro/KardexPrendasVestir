@@ -6,11 +6,11 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 import {AppComponent} from './app.component';
-import {LoginComponent} from './login/login.component';
-import {VentasComponent} from './ventas/ventas.component';
-import {ReportesComponent} from './reportes/reportes.component';
-import {ProductosComponent} from './productos/productos.component';
-import {UsuariosComponent} from './usuarios/usuarios.component';
+import {LoginComponent} from './Components/login/login.component';
+import {VentasComponent} from './Components/ventas/ventas.component';
+import {ReportesComponent} from './Components/reportes/reportes.component';
+import {ProductosComponent} from './Components/productos/productos.component';
+import {UsuariosComponent} from './Components/usuarios/usuarios.component';
 import {HeaderComponent} from './header/header.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
@@ -18,8 +18,15 @@ import {RouterModule} from '@angular/router';
 import {AppMaterialModule} from './app-material/app-material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DialogAddProdComponent} from './dialog-add-prod/dialog-add-prod.component';
-
+import {DialogAddProdComponent} from './Dialogs/dialog-add-prod/dialog-add-prod.component';
+import { DialogEditProdComponent } from './Dialogs/dialog-edit-prod/dialog-edit-prod.component';
+import { DialogAddVentaComponent } from './Dialogs/dialog-add-venta/dialog-add-venta.component';
+import { DialogDetallVentaComponent } from './Dialogs/dialog-detall-venta/dialog-detall-venta.component';
+import { DialogComprobacionComponent } from './Dialogs/dialog-comprobacion/dialog-comprobacion.component';
+import {DialogEditVentaComponent} from './Dialogs/dialog-edit-venta/dialog-edit-venta.component';
+import { DialogDetallUsuComponent } from './Dialogs/dialog-detall-usu/dialog-detall-usu.component';
+import { DialogEditUsuComponent } from './Dialogs/dialog-edit-usu/dialog-edit-usu.component';
+import { DialogAddUsuComponent } from './Dialogs/dialog-add-usu/dialog-add-usu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +37,14 @@ import {DialogAddProdComponent} from './dialog-add-prod/dialog-add-prod.componen
     ProductosComponent,
     UsuariosComponent,
     HeaderComponent,
-    DialogAddProdComponent
+    DialogAddProdComponent,
+    DialogEditProdComponent,
+    DialogAddVentaComponent,
+    DialogDetallVentaComponent,
+    DialogComprobacionComponent,
+    DialogEditVentaComponent,
+    DialogEditUsuComponent,
+    DialogAddUsuComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +69,10 @@ import {DialogAddProdComponent} from './dialog-add-prod/dialog-add-prod.componen
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [DialogAddProdComponent]
+  entryComponents: [DialogAddProdComponent, DialogEditProdComponent, DialogAddVentaComponent,
+    DialogComprobacionComponent, DialogDetallVentaComponent, DialogEditVentaComponent,
+    DialogEditUsuComponent,
+    DialogAddUsuComponent]
 })
 export class AppModule {
 }

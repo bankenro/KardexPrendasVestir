@@ -1,7 +1,7 @@
 <mat-dialog-content>
-  <form [formGroup]="form" (ngSubmit)="SubirImagen()">
+  <form [formGroup]="form" (ngSubmit)="AgregarPrenda()">
     <img [src]="imagenurl" class="mx-auto d-block" alt="foto prenda">
-    <input type="file" formControlName="imagenfc" (change)="CargarImagen($event)">
+    <input type="file" formControlName="imagenfc" accept="image/x-png,image/jpeg" (change)="CargarImagen($event)">
     <mat-form-field>
       <mat-select placeholder="Categoria" formControlName="idcategoria">
         <mat-option *ngFor="let item of categorias" [value]="item.id"> {{item.nombre}}
@@ -54,12 +54,14 @@
         Ingrese una cantidad
       </mat-error>
     </mat-form-field>
+
     <mat-form-field class="example-full-width">
       <input matInput type="number" formControlName="precio" placeholder="Precio">
       <mat-error *ngIf="isFieldInvalid('precio')">
         Ingrese el precio
       </mat-error>
     </mat-form-field>
+
     <div class="d-flex justify-content-center">
       <button class="text-white" mat-button color="primary" (click)="Cerrar()" >Cancelar</button>
       <mat-divider style="margin: 10px;" [vertical]="true"></mat-divider>

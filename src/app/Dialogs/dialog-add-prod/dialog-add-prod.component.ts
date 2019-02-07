@@ -1,12 +1,13 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {Categorias} from '../Data/Categorias';
-import {Marcas} from '../Data/Marcas';
-import {ServicioService} from '../Servicio/servicio.service';
-import {Colores} from '../Data/Colores';
-import {Tallas} from '../Data/Tallas';
-import {Generos} from '../Data/Generos';
+import {Categorias} from '../../Data/Categorias';
+import {Marcas} from '../../Data/Marcas';
+import {ServicioService} from '../../Servicio/servicio.service';
+import {Colores} from '../../Data/Colores';
+import {Tallas} from '../../Data/Tallas';
+import {Generos} from '../../Data/Generos';
+import {UsuarioService} from '../../Servicio/usuario.service';
 
 
 @Component({
@@ -17,20 +18,20 @@ import {Generos} from '../Data/Generos';
 export class DialogAddProdComponent implements OnInit {
   form: FormGroup;
   imagenurl = 'http://placehold.it/180';
-  modalTitle: string;
   base64result = '';
   categorias: Categorias[];
   marcas: Marcas[];
   colores: Colores[];
   tallas: Tallas[];
   generos: Generos[];
+  usuario: number;
   private formSubmitAttempt: boolean;
 
-  constructor(private servicio: ServicioService,
+  constructor(private usuarioservicio: UsuarioService,
+              private servicio: ServicioService,
               private fb: FormBuilder,
               public dialogRef: MatDialogRef<DialogAddProdComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any) {
-    this.modalTitle = data.title;
     // console.log(data);
   }
 
@@ -73,18 +74,24 @@ export class DialogAddProdComponent implements OnInit {
     }
   }
 
-  SubirImagen() {
+  AgregarPrenda() {
     // console.log('ejecutando');
-   /* console.log('data: ' + this.form.get('idcategoaria').value
-      + ' ' + this.form.get('idmarca').value
-      + ' ' + this.form.get('idcolor').value
-      + ' ' + this.form.get('idtalla').value
-      + ' ' + this.form.get('idgenero').value
-      + ' ' + this.form.get('cantidad').value
-      + ' ' + this.form.get('precio').value);*/
+    /* console.log('data: ' + this.form.get('idcategoaria').value
+       + ' ' + this.form.get('idmarca').value
+       + ' ' + this.form.get('idcolor').value
+       + ' ' + this.form.get('idtalla').value
+       + ' ' + this.form.get('idgenero').value
+       + ' ' + this.form.get('cantidad').value
+       + ' ' + this.form.get('precio').value);*/
     // console.log('image' + this.base64result);
+    const guardado = this.usuarioservicio.getUsuarioLogeadoen();
+    for (const row of guardado) {
+      this.usuario = row.id;
+    }
+    // console.log(this.usuario);
     const formData = new FormData;
     formData.append('accion', 'addprod');
+    formData.append('usuario', this.usuario.toString());
     formData.append('imagen', this.base64result);
     formData.append('idcategoria', this.form.get('idcategoria').value);
     formData.append('idmarca', this.form.get('idmarca').value);
@@ -93,7 +100,7 @@ export class DialogAddProdComponent implements OnInit {
     formData.append('idgenero', this.form.get('idgenero').value);
     formData.append('cantidad', this.form.get('cantidad').value);
     formData.append('precio', this.form.get('precio').value);
-    this.servicio.setPrendas(formData).subscribe(
+    this.servicio.servicio(formData).subscribe(
       respuesta => {
         Object.keys(respuesta).map((key) => {
           // console.log(key);
@@ -115,7 +122,7 @@ export class DialogAddProdComponent implements OnInit {
   private LlenarCategorias() {
     const formData = new FormData;
     formData.append('accion', 'categorias');
-    this.servicio.getCategorias(formData).subscribe(
+    this.servicio.servicio(formData).subscribe(
       categorias => {
         Object.keys(categorias).map((key) => {
           if (key === 'categorias') {
@@ -131,7 +138,7 @@ export class DialogAddProdComponent implements OnInit {
   private LlenarMarcas() {
     const formData = new FormData;
     formData.append('accion', 'marcas');
-    this.servicio.getMarcas(formData).subscribe(
+    this.servicio.servicio(formData).subscribe(
       marcas => {
         Object.keys(marcas).map((key) => {
           if (key === 'marcas') {
@@ -147,7 +154,7 @@ export class DialogAddProdComponent implements OnInit {
   private LlenarColores() {
     const formData = new FormData;
     formData.append('accion', 'colores');
-    this.servicio.getMarcas(formData).subscribe(
+    this.servicio.servicio(formData).subscribe(
       marcas => {
         Object.keys(marcas).map((key) => {
           if (key === 'colores') {
@@ -163,7 +170,7 @@ export class DialogAddProdComponent implements OnInit {
   private LlenarTallas() {
     const formData = new FormData;
     formData.append('accion', 'tallas');
-    this.servicio.getMarcas(formData).subscribe(
+    this.servicio.servicio(formData).subscribe(
       marcas => {
         Object.keys(marcas).map((key) => {
           if (key === 'tallas') {
@@ -179,7 +186,7 @@ export class DialogAddProdComponent implements OnInit {
   private Generos() {
     const formData = new FormData;
     formData.append('accion', 'generos');
-    this.servicio.getMarcas(formData).subscribe(
+    this.servicio.servicio(formData).subscribe(
       marcas => {
         Object.keys(marcas).map((key) => {
           if (key === 'generos') {

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ServicioService} from '../Servicio/servicio.service';
-import {UsuarioService} from '../Servicio/usuario.service';
-import {Usuario} from '../Data/Usuario';
+import {ServicioService} from '../../Servicio/servicio.service';
+import {UsuarioService} from '../../Servicio/usuario.service';
+import {Usuario} from '../../Data/Usuario';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
@@ -72,10 +72,9 @@ export class LoginComponent implements OnInit {
       // console.log('usuario' + this.form.get('usuario').value);
       /* console.log(key);
       console.log(usuario[key]);*/
-      if (key === 'error') {
+      if (key === 'usu') {
         // console.log(usuario[key]);
-        if (usuario[key] === false) {
-          this.usuarioservicio.setUsuarioLogeadoen(usuario);
+          this.usuarioservicio.setUsuarioLogeadoen(usuario[key]);
           this.router.navigate(['productos']);
           location.reload();
         } else {
@@ -84,7 +83,6 @@ export class LoginComponent implements OnInit {
         }
         // console.log(key);
         // console.log(usuario[key]);
-      }
     });
   }
 }

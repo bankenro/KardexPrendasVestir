@@ -6,7 +6,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule, MatSelectModule, MatTabsModule} from '@angular/material';
+import {
+  MatAutocompleteModule, MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule, MatNativeDateModule, MatPaginatorModule,
+  MatSelectModule, MatSortModule,
+  MatTableModule,
+  MatTabsModule
+} from '@angular/material';
+
 
 
 @NgModule({
@@ -25,7 +35,13 @@ import {MatDialogModule, MatDividerModule, MatExpansionModule, MatGridListModule
     MatExpansionModule,
     MatSelectModule,
     MatDividerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSortModule,
+    MatAutocompleteModule,
+    MatPaginatorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class AppMaterialModule { }
