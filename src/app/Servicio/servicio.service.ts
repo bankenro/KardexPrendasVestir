@@ -1,19 +1,16 @@
-import {Injectable, SecurityContext} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Usuario} from '../Data/Usuario';
-import {catchError, map} from 'rxjs/operators';
-import {Categorias} from '../Data/Categorias';
-import {Marcas} from '../Data/Marcas';
-import {Prendas} from '../Data/Prendas';
-
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicioService {
-  private url0 = 'http://192.168.1.10/APIKardexPrendasVestir/V1/';
+  // private url0 = 'http://secdet.pro/APIKardexPrendasVestir/V1/';
 
+   private url0 = 'http://192.168.1.10/APIKardexPrendasVestir/V1/';
   constructor(protected http: HttpClient) {
   }
 

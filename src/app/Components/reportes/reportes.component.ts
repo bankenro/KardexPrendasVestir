@@ -108,4 +108,40 @@ export class ReportesComponent implements OnInit, AfterViewInit {
     }
     this.total = suma;
   }
+
+  Imprimir() {
+    const iddia = this.form.get('iddia').value;
+    const idmes = this.form.get('idmes').value ;
+    const idanioa = this.form.get('idanio').value;
+    let string = '';
+    if (iddia !== '' && idmes !== '' && idanioa !== '') {
+      string = idanioa + '-' + idmes + '-' + iddia;
+    }
+    if (iddia === '' && idmes !== '' && idanioa !== '') {
+      string = idanioa + '-' + idmes + '-';
+    }
+    if (iddia === '' && idmes === '' && idanioa !== '') {
+      string = idanioa + '-';
+    }
+    if (iddia === '' && idmes !== '' && idanioa === '') {
+      string = '-' + idmes + '-';
+    }
+    if (iddia !== '' && idmes === '' && idanioa === '') {
+      string = '-' + iddia;
+    }
+    if (iddia !== '' && idmes !== '' && idanioa === '') {
+      string = '-' + idmes + '-' + iddia;
+    }
+    if (iddia !== '' && idmes === '' && idanioa !== '') {
+      string = '-' + iddia;
+    }
+    if (iddia === '' && idmes === '' && idanioa === '') {
+      string = '';
+    }
+    const formData = new FormData;
+    formData.append('accion', 'reporte');
+    formData.append('fecha', string);
+    this.ventas = null;
+    this.servicio.servicio(formData).subscribe();
+  }
 }

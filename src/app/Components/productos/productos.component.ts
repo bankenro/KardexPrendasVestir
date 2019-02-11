@@ -45,7 +45,7 @@ export class ProductosComponent implements OnInit {
     });
     const objusu = this.usuario.getUsuarioLogeadoen();
     const objusu1 = objusu[0];
-    if (objusu1['tipo'] === '1') {
+    if (objusu1['tipo'] === '2') {
       this.habilitaredit = true;
       this.habilitaradd = true;
     }

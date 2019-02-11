@@ -1,18 +1,21 @@
-<mat-divider style="height: 20px; margin: 05px;" [inset]="true"></mat-divider>
-<div class="divbar">
-  <form>
-    <span fxFlex></span>
-    <button mat-button color="primary" (click)="openDialog()"><i class="fa fa-plus-square"></i> USUARIO</button>
-  </form>
-</div>
-<mat-divider style="height: 20px; margin: 05px;" [inset]="true"></mat-divider>
+<div class="container">
+  <mat-divider style="height: 20px; margin: 05px;" [inset]="true"></mat-divider>
+  <div class="divbar">
+    <form>
+      <span fxFlex></span>
+      <button mat-button color="primary" [disabled]="!habilitaradd" (click)="openDialog()"><i
+        class="fa fa-plus-square"></i> USUARIO
+      </button>
+    </form>
+  </div>
+  <mat-divider style="height: 20px; margin: 05px;" [inset]="true"></mat-divider>
 
-<div fxLayout fxLayoutAlign="center center">
-  <mat-form-field fxFlex="40%">
-    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtro">
-  </mat-form-field>
+  <div fxLayout fxLayoutAlign="center center">
+    <mat-form-field fxFlex="40%">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtro">
+    </mat-form-field>
+  </div>
 </div>
-
 <div class="mat-elevation-z8 ventas-table">
   <mat-table [dataSource]="dataSource" matSort matSortStart="desc">
 
@@ -49,7 +52,7 @@
     <ng-container matColumnDef="actualizar">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ACTUALIZAR</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" (click)="Modificar(row)">
+        <button mat-icon-button color="primary" [disabled]="!habilitaredit" (click)="Modificar(row)">
           <i class="fa fa-edit"></i>
         </button>
       </mat-cell>

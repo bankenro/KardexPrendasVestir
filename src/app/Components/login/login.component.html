@@ -2,16 +2,22 @@
 <div class="signin-content">
   <mat-card>
     <mat-card-content>
+      <h4> usuarios de pruebas</h4>
+
+      <p>usuario: 87654321 || contraseña: empleado</p>
+      <br>
+      <p>usuario: 12345678 || contraseña: administrador</p>
+
       <form [formGroup]="form" (ngSubmit)="LoginUser()">
         <h1> Login</h1>
         <mat-form-field class="full-width-input">
-          <input matInput type="number" placeholder="Usuario" formControlName="usuario" >
+          <input matInput type="number" placeholder="Usuario" formControlName="usuario">
           <mat-error *ngIf="isFieldInvalid('usuario')">
             Ingrese su DNI
           </mat-error>
         </mat-form-field>
         <mat-form-field class="full-width-input">
-          <input matInput type="text" placeholder="Contraseña" formControlName="password" >
+          <input matInput type="password" placeholder="Contraseña" formControlName="password">
           <mat-error *ngIf="isFieldInvalid('password')">
             Ingrese su contraseña
           </mat-error>

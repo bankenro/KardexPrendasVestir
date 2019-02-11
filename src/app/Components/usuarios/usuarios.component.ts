@@ -5,6 +5,7 @@ import {UsuarioCompleto} from '../../Data/UsuarioCompleto';
 import {DialogComprobacionComponent} from '../../Dialogs/dialog-comprobacion/dialog-comprobacion.component';
 import {DialogAddUsuComponent} from '../../Dialogs/dialog-add-usu/dialog-add-usu.component';
 import {DialogEditUsuComponent} from '../../Dialogs/dialog-edit-usu/dialog-edit-usu.component';
+import {UsuarioService} from '../../Servicio/usuario.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -17,11 +18,20 @@ export class UsuariosComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<UsuarioCompleto>();
   usuarios: UsuarioCompleto[];
   columnas = ['id', 'password', 'tipo', 'nombre', 'paterno', 'materno', 'actualizar', 'eliminar'];
-  constructor(private servicio: ServicioService,
+  habilitaredit: boolean;
+  habilitaradd: boolean;
+  constructor(private usuario: UsuarioService,
+              private servicio: ServicioService,
               private dialog: MatDialog) { }
 
   ngOnInit() {
     this.LlenarUsuarios();
+    const objusu = this.usuario.getUsuarioLogeadoen();
+    const objusu1 = objusu[0];
+    if (objusu1['tipo'] === '2') {
+      this.habilitaredit = true;
+      this.habilitaradd = true;
+    }
   }
 
   ngAfterViewInit(): void {

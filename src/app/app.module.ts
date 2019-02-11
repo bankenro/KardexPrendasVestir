@@ -24,9 +24,9 @@ import { DialogAddVentaComponent } from './Dialogs/dialog-add-venta/dialog-add-v
 import { DialogDetallVentaComponent } from './Dialogs/dialog-detall-venta/dialog-detall-venta.component';
 import { DialogComprobacionComponent } from './Dialogs/dialog-comprobacion/dialog-comprobacion.component';
 import {DialogEditVentaComponent} from './Dialogs/dialog-edit-venta/dialog-edit-venta.component';
-import { DialogDetallUsuComponent } from './Dialogs/dialog-detall-usu/dialog-detall-usu.component';
 import { DialogEditUsuComponent } from './Dialogs/dialog-edit-usu/dialog-edit-usu.component';
 import { DialogAddUsuComponent } from './Dialogs/dialog-add-usu/dialog-add-usu.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -64,10 +64,10 @@ import { DialogAddUsuComponent } from './Dialogs/dialog-add-usu/dialog-add-usu.c
         {path: 'ventas', component: VentasComponent},
         {path: 'login', component: LoginComponent},
         // {path: '', redirectTo: 'productos', pathMatch: 'full'}
-      ]
+      ]// , { useHash: true, initialNavigation: false}
     )
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
   entryComponents: [DialogAddProdComponent, DialogEditProdComponent, DialogAddVentaComponent,
     DialogComprobacionComponent, DialogDetallVentaComponent, DialogEditVentaComponent,
